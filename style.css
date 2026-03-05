@@ -1,0 +1,224 @@
+/* Add this at the VERY top of your style.css */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* 1. UNIVERSAL RESET - Ensures consistency on all screens */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 2. NAVIGATION - Uses Flexbox (Requirement #6) */
+nav {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* 3. HERO SECTION - Requirement #2 (Brand Color) */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+
+/* 4. THE PROFILE IMAGE FIX - Requirement #3 */
+.profile-circle {
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
+    border-radius: 50%;
+    border: 5px solid #6a11cb;
+    overflow: hidden; /* Clips the image to the circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Centers face, prevents stretching */
+}
+
+/* 5. CONTENT SECTIONS */
+main {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #2575fc;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background: #6a11cb;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+/* 6. FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 40px;
+}
+
+/* New Logo Styling for Requirement #3 */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #8a2be2, #4b0082); /* Purple Brand Colors */
+    padding: 8px 15px;
+    border-radius: 8px; /* Gives it a modern 'button' look */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+/* New Logo Styling for Requirement #3 */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #8a2be2, #4b0082);
+    padding: 8px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: inline-block;
+    
+    /* ADD THESE TWO LINES */
+    font-style: italic; /* Makes the font lean over */
+    transform: skewX(-5deg); /* Skews the box slightly for a dynamic look */
+}
+
+.logo:hover {
+    transition: 0.3s;
+    transform: skewX(-5deg) rotate(360deg); /* Skew and spin together */
+}
+
+/* Optimized Logo for Requirement #3 and #5 */
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(45deg, #8a2be2, #4b0082);
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    
+    /* The aggressive italics look */
+    font-style: italic !important; 
+    transform: skewX(-15deg); /* This creates the deep lean */
+    
+    transition: transform 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.logo:hover {
+    /* Keeps the lean while spinning and growing */
+    transform: skewX(-15deg) rotate(360deg) scale(1.1); 
+}
+
+
+/* Mobile-optimized animation settings */
+section, .profile-circle, .btn, .card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; /* This tells the phone to be ready */
+}
+
+/* The class JS will add when you scroll */
+.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* This makes things fade in automatically when the page loads */
+section, .profile-circle, .btn, header {
+    animation: fadeIn 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keep your hover effect because it's cool */
+.btn:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+/* LAPTOP / DESKTOP STYLES (Default) */
+nav ul {
+    display: flex;
+    justify-content: flex-end; /* Links stay on the right on laptop */
+    gap: 30px;
+    list-style: none;
+}
+
+/* PHONE STYLES (Requirement #10) */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column; /* Stacks Logo above the Menu on phones */
+        align-items: center;
+    }
+    
+    nav ul {
+        justify-content: center; /* Centers links on phone */
+        gap: 15px; 
+        padding: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 14px; /* Easier to tap with a finger on a phone */
+    }
+}
